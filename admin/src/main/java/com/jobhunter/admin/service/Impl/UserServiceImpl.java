@@ -3,6 +3,8 @@ package com.jobhunter.admin.service.Impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.jobhunter.admin.common.enums.UserErrorCodeEnum;
+import com.jobhunter.admin.common.exception.ClientException;
 import com.jobhunter.admin.dao.entity.UserDO;
 import com.jobhunter.admin.dao.mapper.UserMapper;
 import com.jobhunter.admin.dto.resp.UserRespDTO;
@@ -23,8 +25,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO>implements U
         UserDO userDO = baseMapper.selectOne(queryWrapper);
         if (userDO == null) {
             // 若查询结果为空，返回 null，调用者可根据返回值判断是否存在该用户
-            //throw new ClientException(UserErrorCodeEnum.USER_NULL);
-            return null;
+            throw new ClientException(UserErrorCodeEnum.USER_NULL);
         }
         UserRespDTO result = new UserRespDTO();
         BeanUtils.copyProperties(userDO,result);

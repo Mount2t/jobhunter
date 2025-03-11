@@ -1,15 +1,13 @@
 package com.jobhunter.admin.dto.resp;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.jobhunter.admin.common.serialize.PhoneDesensitizationSerializer;
+
 import lombok.Data;
 
 /**
- * 用户返回参数响应
+ *用户返回参数响应
  */
 @Data
-public class UserRespDTO {
-
+public class UserActualRespDTO {
     /**
      * id
      */
@@ -26,9 +24,8 @@ public class UserRespDTO {
     private String realName;
 
     /**
-     * 手机号
+     * 电话号码
      */
-    @JsonSerialize(using = PhoneDesensitizationSerializer.class)
     private String phone;
 
     /**
